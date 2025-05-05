@@ -16,8 +16,6 @@ namespace iTasks
         public frmGereUtilizadores()
         {
             InitializeComponent();
-            
-            Public string 
         }
 
         private void txtIdGestor_TextChanged(object sender, EventArgs e)
