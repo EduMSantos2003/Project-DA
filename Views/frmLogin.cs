@@ -33,7 +33,6 @@ namespace iTasks
 
             Hide();
             secondForm.ShowDialog();
-
         }
 
     }
