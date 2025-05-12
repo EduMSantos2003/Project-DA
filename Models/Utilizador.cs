@@ -8,5 +8,6 @@ namespace iTasks.Models
 {
     class Utilizador
     {
+
     }
 }

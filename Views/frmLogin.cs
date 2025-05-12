@@ -28,8 +28,11 @@ namespace iTasks
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            string name = txtUsername.Text;
-            string nif = txtPassword.Text;
+            Form secondForm = new frmKanban();
+            //secondForm.Show();
+
+            Hide();
+            secondForm.ShowDialog();
 
         }
 

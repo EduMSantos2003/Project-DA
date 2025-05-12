@@ -52,7 +52,6 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(205, 26);
             this.txtUsername.TabIndex = 1;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // txtPassword
             // 
@@ -94,7 +93,6 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "frmLogin";
             this.Text = "frmLogin";
             this.ResumeLayout(false);
             this.PerformLayout();
