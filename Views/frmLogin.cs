@@ -33,7 +33,7 @@ namespace iTasks
             Form secondForm = new frmKanban();
             //secondForm.Show();
 
-            // Validação Login
+            // Validação Logina
 
             if (name == "abc" && password == "123") 
             {

@@ -16,5 +16,31 @@ namespace iTasks
         {
             InitializeComponent();
         }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btNova_Click(object sender, EventArgs e)
+        {
+            Form frmDetalhesTarefa = new frmDetalhesTarefa();
+            frmDetalhesTarefa.ShowDialog();
+        }
+
+        private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frmConsultarTarefasConcluidas = new frmConsultarTarefasConcluidas();
+            frmConsultarTarefasConcluidas.ShowDialog();
+        }
+
+        private void tarefasEmCursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frmConsultaTarefasEmCurso = new frmConsultaTarefasEmCurso();
+            frmConsultaTarefasEmCurso.ShowDialog();
+        }
     }
 }

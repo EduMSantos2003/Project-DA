@@ -139,6 +139,7 @@
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // exportarParaCSVToolStripMenuItem
             // 
@@ -181,12 +182,14 @@
             this.tarefasTerminadasToolStripMenuItem.Name = "tarefasTerminadasToolStripMenuItem";
             this.tarefasTerminadasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tarefasTerminadasToolStripMenuItem.Text = "Tarefas Concluídas";
+            this.tarefasTerminadasToolStripMenuItem.Click += new System.EventHandler(this.tarefasTerminadasToolStripMenuItem_Click);
             // 
             // tarefasEmCursoToolStripMenuItem
             // 
             this.tarefasEmCursoToolStripMenuItem.Name = "tarefasEmCursoToolStripMenuItem";
             this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tarefasEmCursoToolStripMenuItem.Text = "Tarefas em Curso";
+            this.tarefasEmCursoToolStripMenuItem.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
             // btSetDoing
             // 
@@ -223,6 +226,7 @@
             this.btNova.TabIndex = 8;
             this.btNova.Text = "Nova Tarefa";
             this.btNova.UseVisualStyleBackColor = true;
+            this.btNova.Click += new System.EventHandler(this.btNova_Click);
             // 
             // label1
             // 
