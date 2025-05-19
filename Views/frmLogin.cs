@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,8 +17,8 @@ namespace iTasks
     public partial class frmLogin : Form
     {
         public int Id { get; set; }
-        public int User { get; set; }
-        public int Username { get; set; }
+        public string User { get; set; }
+        public string UserName { get; set; }
         public int Password { get; set; }
 
         public frmLogin()
@@ -30,16 +31,13 @@ namespace iTasks
         {
             string name = txtUsername.Text;
             string password = txtPassword.Text;
-            Form secondForm = new frmKanban();
-            //secondForm.Show();
-
-            // Validação Logina
 
             if (name == "abc" && password == "123") 
             {
                 MessageBox.Show("Login realizado com sucesso!");
-                Hide();
-                secondForm.ShowDialog();
+                frmKanban secondForm = new frmKanban();
+                secondForm.UserName = name;
+                secondForm.Show();
             }
             else
             {

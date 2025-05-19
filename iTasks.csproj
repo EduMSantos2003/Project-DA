@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\EstadoTarefa.cs" />
+    <Compile Include="Models\NivelExperiencia.cs" />
+    <Compile Include="Models\TipoTarefa.cs" />
+    <Compile Include="Models\TipoUtilizador.cs" />
     <Compile Include="Views\frmConsultarTarefasConcluidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,10 +93,7 @@
     <Compile Include="Views\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\DetalhesDasTarefas.cs" />
-    <Compile Include="Models\Sessao.cs" />
     <Compile Include="Models\Tarefas.cs" />
-    <Compile Include="Models\TarefasConcluidas.cs" />
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

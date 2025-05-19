@@ -4,17 +4,21 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iTasks
 {
+
     public partial class frmKanban : Form
     {
+        public string UserName { get; set; }
         public frmKanban()
         {
             InitializeComponent();
+            this.Load += frmKanbam_Load;
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,6 +45,15 @@ namespace iTasks
         {
             Form frmConsultaTarefasEmCurso = new frmConsultaTarefasEmCurso();
             frmConsultaTarefasEmCurso.ShowDialog();
+        }
+        public void frmKanbam_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Bem-vindo, " + UserName;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
