@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    internal class TipoUtilizador
+    internal class Programador
     {
     }
 }
