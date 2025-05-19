@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    class Tarefas
+    class Tarefa
     {
         public int Id { get; set; }
         public int IdGestor { get; set; }

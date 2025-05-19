@@ -12,11 +12,7 @@ namespace iTasks.Models
         public string nome { get; set; }
         public string username { get; set; }
         public string password { get; set; }
-        public enum TipoUtilizador
-        {
-            Gestor,
-            Programador
-        }
-        
+        public TipoUtilizador Tipo { get; set; }  
+
     }
 }
