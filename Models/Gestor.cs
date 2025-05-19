@@ -8,6 +8,7 @@ namespace iTasks.Models
 {
     class Gestor : Utilizador
     {
-
+        public ICollection<Programador> Programadores { get; set; }
+        public ICollection<Tarefa> TarefasCriadas { get; set; }
     }
 }
