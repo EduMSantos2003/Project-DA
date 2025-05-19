@@ -36,19 +36,17 @@
             // gvTarefasEmCurso
             // 
             this.gvTarefasEmCurso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTarefasEmCurso.Location = new System.Drawing.Point(18, 18);
-            this.gvTarefasEmCurso.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gvTarefasEmCurso.Location = new System.Drawing.Point(12, 12);
             this.gvTarefasEmCurso.Name = "gvTarefasEmCurso";
             this.gvTarefasEmCurso.RowHeadersWidth = 62;
-            this.gvTarefasEmCurso.Size = new System.Drawing.Size(1539, 608);
+            this.gvTarefasEmCurso.Size = new System.Drawing.Size(772, 308);
             this.gvTarefasEmCurso.TabIndex = 0;
             // 
             // btFechar
             // 
-            this.btFechar.Location = new System.Drawing.Point(1401, 638);
-            this.btFechar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btFechar.Location = new System.Drawing.Point(680, 326);
             this.btFechar.Name = "btFechar";
-            this.btFechar.Size = new System.Drawing.Size(156, 35);
+            this.btFechar.Size = new System.Drawing.Size(104, 23);
             this.btFechar.TabIndex = 30;
             this.btFechar.Text = "Fechar";
             this.btFechar.UseVisualStyleBackColor = true;
@@ -56,12 +54,11 @@
             // 
             // frmConsultaTarefasEmCurso
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1575, 692);
+            this.ClientSize = new System.Drawing.Size(805, 357);
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasEmCurso);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmConsultaTarefasEmCurso";
             this.Text = "frmConsultaTarefasEmCurso";
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasEmCurso)).EndInit();
