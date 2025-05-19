@@ -8,17 +8,32 @@ using iTasks.Models; // Adjust the namespace according to your project structure
 
 namespace iTasks.Data
 {
-    class AppDbContext : DbContext
+    namespace iTasks.Data
     {
-        public AppDbContext() : base("name=AppDbContext") {}
-        public DbSet<Utilizador> Utilizador { get; set; }
-        public DbSet<Programador> Programador { get; set; }
-        public DbSet<Gestor> Gestor { get; set; }
-        public DbSet<Departamento> Departamento { get; set; }
-        public DbSet<EstadoTarefa> EstadoTarefa { get; set; }
-        public DbSet<NivelExperiencia> NivelExperiencia { get; set; }
-        public DbSet<Tarefa> Tarefas { get; set; }
-        public DbSet<TipoTarefa> TipoTarefa { get; set; }
+        public class AppDbContext : DbContext
+        {
+            public AppDbContext() : base("name=AppDbContext") { }
 
+            public DbSet<Utilizador> Utilizadores { get; set; }
+            public DbSet<Programador> Programadores { get; set; }
+            public DbSet<Gestor> Gestores { get; set; }
+            public DbSet<Tarefa> Tarefas { get; set; }
+            public DbSet<TipoTarefa> TiposTarefas { get; set; }
+
+            protected override void OnModelCreating(DbModelBuilder modelBuilder)
+            {
+                // HERANÇA TPH
+                modelBuilder.Entity<Utilizador>()
+                    .Map<Gestor>(m => m.Requires("Tipo").HasValue("Gestor"))
+                    .Map<Programador>(m => m.Requires("Tipo").HasValue("Programador"));
+
+                // RELAÇÕES (se já estiverem nos modelos)
+                // Ex: Gestor → Programadores, TarefasCriadas
+                //     Programador → TarefasExecutadas
+
+                base.OnModelCreating(modelBuilder);
+            }
+        }
     }
+
 }

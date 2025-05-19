@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    internal class NivelExperiencia
+    public enum NivelExperiencia
     {
+        Junior,
+        Senior
     }
 }
