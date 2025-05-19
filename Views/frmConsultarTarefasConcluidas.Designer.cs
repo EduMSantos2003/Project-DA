@@ -35,10 +35,9 @@
             // 
             // btFechar
             // 
-            this.btFechar.Location = new System.Drawing.Point(1401, 638);
-            this.btFechar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btFechar.Location = new System.Drawing.Point(934, 415);
             this.btFechar.Name = "btFechar";
-            this.btFechar.Size = new System.Drawing.Size(156, 35);
+            this.btFechar.Size = new System.Drawing.Size(104, 23);
             this.btFechar.TabIndex = 32;
             this.btFechar.Text = "Fechar";
             this.btFechar.UseVisualStyleBackColor = true;
@@ -47,21 +46,19 @@
             // gvTarefasConcluidas
             // 
             this.gvTarefasConcluidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTarefasConcluidas.Location = new System.Drawing.Point(18, 18);
-            this.gvTarefasConcluidas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gvTarefasConcluidas.Location = new System.Drawing.Point(12, 12);
             this.gvTarefasConcluidas.Name = "gvTarefasConcluidas";
             this.gvTarefasConcluidas.RowHeadersWidth = 62;
-            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1539, 608);
+            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1026, 395);
             this.gvTarefasConcluidas.TabIndex = 31;
             // 
             // frmConsultarTarefasConcluidas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1604, 853);
+            this.ClientSize = new System.Drawing.Size(859, 372);
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasConcluidas);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmConsultarTarefasConcluidas";
             this.Text = "frmConsultarTarefasConcluidas";
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).EndInit();
