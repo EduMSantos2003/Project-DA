@@ -55,5 +55,11 @@ namespace iTasks
         {
 
         }
+
+        private void gerirUtilizadoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frmGereUtilizadores = new frmGereUtilizadores();
+            frmGereUtilizadores.ShowDialog();
+        }
     }
 }

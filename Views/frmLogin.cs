@@ -38,6 +38,7 @@ namespace iTasks
                 frmKanban secondForm = new frmKanban();
                 secondForm.UserName = name;
                 secondForm.Show();
+                
             }
             else
             {

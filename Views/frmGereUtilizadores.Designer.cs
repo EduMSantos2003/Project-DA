@@ -74,6 +74,7 @@
             this.btGravarGestor.TabIndex = 37;
             this.btGravarGestor.Text = "Gravar Dados";
             this.btGravarGestor.UseVisualStyleBackColor = true;
+            this.btGravarGestor.Click += new System.EventHandler(this.btGravarGestor_Click);
             // 
             // txtNomeGestor
             // 
@@ -192,7 +193,7 @@
             // cbDepartamento
             // 
             this.cbDepartamento.FormattingEnabled = true;
-            this.cbDepartamento.Location = new System.Drawing.Point(441, 312);
+            this.cbDepartamento.Location = new System.Drawing.Point(442, 312);
             this.cbDepartamento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbDepartamento.Name = "cbDepartamento";
             this.cbDepartamento.Size = new System.Drawing.Size(300, 28);
