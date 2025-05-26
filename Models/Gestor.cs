@@ -8,8 +8,31 @@ using System.Threading.Tasks;
 namespace iTasks.Models
 {
     public class Gestor : Utilizador
-    {
-        public virtual ICollection<Programador> Programadores { get; set; }
-        public virtual ICollection<Tarefa> TarefasCriadas { get; set; }
+    {   
+
+        public Departamento Departamento { get; set; }
+
+        public List<string> Projetos { get; set; }
+
+        public bool GereUtilizadores { get; set; }
+
+        public Gestor(string name, string username, string password,Departamento departamento, bool chkGereUtilizadores) : base(name, username, password)
+        {
+            this.GereUtilizadores = chkGereUtilizadores;
+            this.Departamento = departamento;
+
+          
+        }
+
+        public Gestor()
+        {
+        }
+
+        public void AdicionarGestor(string projeto)
+        {
+            Projetos.Add(projeto);
+        }
+
     }
+
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
+
     public enum EstadoTarefa
     {
         ToDo,

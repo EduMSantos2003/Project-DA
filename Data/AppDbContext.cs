@@ -12,7 +12,7 @@ namespace iTasks.Data
     {
         public class AppDbContext : DbContext
         {
-            public AppDbContext() : base("name=AppDbContext") { }
+            public AppDbContext() { }
 
             public DbSet<Utilizador> Utilizadores { get; set; }
             public DbSet<Programador> Programadores { get; set; }
@@ -20,19 +20,7 @@ namespace iTasks.Data
             public DbSet<Tarefa> Tarefas { get; set; }
             public DbSet<TipoTarefa> TiposTarefas { get; set; }
 
-            protected override void OnModelCreating(DbModelBuilder modelBuilder)
-            {
-                // HERANÇA TPH
-                modelBuilder.Entity<Utilizador>()
-                    .Map<Gestor>(m => m.Requires("Tipo").HasValue("Gestor"))
-                    .Map<Programador>(m => m.Requires("Tipo").HasValue("Programador"));
-
-                // RELAÇÕES (se já estiverem nos modelos)
-                // Ex: Gestor → Programadores, TarefasCriadas
-                //     Programador → TarefasExecutadas
-
-                base.OnModelCreating(modelBuilder);
-            }
+            
         }
     }
 

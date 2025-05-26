@@ -8,13 +8,22 @@ namespace iTasks.Models
 {
     public class Programador : Utilizador
     {
-        public NivelExperiencia Nivel { get; set; }
-        public Departamento Departamento { get; set; }
 
-        public int GestorId { get; set; }
-        public virtual Gestor Gestor { get; set; }
+        public Programador()
+        {
+        }
+        public NivelExperiencia NivelExperiencia { get; set; }
 
-        public virtual ICollection<Tarefa> TarefasExecutadas { get; set; }
+        
+       
+
+
+
+        public Programador (string name, string username, string password, NivelExperiencia nivelExperiencia) : base(name, username, password)
+        {
+            this.NivelExperiencia = NivelExperiencia;
+           
+        }
     }
 
 }
