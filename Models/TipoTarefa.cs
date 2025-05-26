@@ -8,6 +8,8 @@ namespace iTasks.Models
 {
     public class TipoTarefa
     {
+        public int IdTarefa { get; set; }
+        public string NomeTarefa { get; set; }
 
     }
 }

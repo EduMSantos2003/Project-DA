@@ -35,7 +35,7 @@
             // 
             // btFechar
             // 
-            this.btFechar.Location = new System.Drawing.Point(934, 415);
+            this.btFechar.Location = new System.Drawing.Point(487, 298);
             this.btFechar.Name = "btFechar";
             this.btFechar.Size = new System.Drawing.Size(104, 23);
             this.btFechar.TabIndex = 32;
@@ -49,14 +49,14 @@
             this.gvTarefasConcluidas.Location = new System.Drawing.Point(12, 12);
             this.gvTarefasConcluidas.Name = "gvTarefasConcluidas";
             this.gvTarefasConcluidas.RowHeadersWidth = 62;
-            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1026, 395);
+            this.gvTarefasConcluidas.Size = new System.Drawing.Size(579, 280);
             this.gvTarefasConcluidas.TabIndex = 31;
             // 
             // frmConsultarTarefasConcluidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 372);
+            this.ClientSize = new System.Drawing.Size(611, 333);
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasConcluidas);
             this.Name = "frmConsultarTarefasConcluidas";
