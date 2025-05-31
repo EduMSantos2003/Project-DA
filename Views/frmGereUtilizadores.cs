@@ -36,10 +36,8 @@ namespace iTasks
             
         }
 
-        private void btGravarGestor_Click(object sender, EventArgs e){
-
-            
-        
+        private void btGravarGestor_Click(object sender, EventArgs e)
+        {   
             using (var DbContext = new AppDbContext())
             {
                 String name = txtNomeGestor.Text;
@@ -73,6 +71,78 @@ namespace iTasks
         }
 
 
+        private void btEditarGestor_Click(object sender, EventArgs e)
+        {
+            if (lstListaGestores.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um gestor da lista.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var DbContext = new AppDbContext())
+            {
+                Gestor selecionado = (Gestor)lstListaGestores.SelectedItem;
+                Gestor gestor = DbContext.Gestores.FirstOrDefault(g => g.Id == selecionado.Id);
+
+                if (gestor != null)
+                {
+                    String name = txtNomeGestor.Text;
+                    String Username = txtUsernameGestor.Text;
+                    String Password = txtPasswordGestor.Text;
+                    gestor.Departamento = (Departamento)cbDepartamento.SelectedItem;
+                    gestor.GereUtilizadores = chkGereUtilizadores.Checked;
+
+                    DbContext.SaveChanges();
+
+                    lstListaGestores.DataSource = null;
+                    lstListaGestores.DataSource = DbContext.Gestores.ToList();
+                    //AtualizarLista();
+                    //LimparCampos();
+
+                    MessageBox.Show("Gestor editado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        //String name = txtNomeGestor.Text;
+        //gestor.Username = txtUsernameGestor.Text;
+        //gestor.Password = txtPasswordGestor.Text;
+        //gestor.Departamento = (Departamento) cbDepartamento.SelectedItem;
+        //gestor.GereUtilizadores = chkGereUtilizadores.Checked;
+
+        private void btApagarGestor_Click(object sender, EventArgs e)
+        {
+            if (lstListaGestores.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um gestor para remover.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var DbContext = new AppDbContext())
+            {
+                Gestor selecionado = (Gestor)lstListaGestores.SelectedItem;
+                Gestor gestor = DbContext.Gestores.FirstOrDefault(g => g.Id == selecionado.Id);
+
+                if (gestor != null)
+                {
+                    var confirm = MessageBox.Show("Tem certeza que deseja remover este gestor?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        DbContext.Gestores.Remove(gestor);
+                        DbContext.SaveChanges();
+
+                        lstListaGestores.DataSource = null;
+                        lstListaGestores.DataSource = DbContext.Gestores.ToList();
+                        //AtualizarLista();
+                        //LimparCampos();
+
+                        MessageBox.Show("Gestor removido com sucesso.", "Removido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+        }
+
+
         private void btnCriarGestor_Click(object sender, EventArgs e)
         {
       
@@ -97,10 +167,12 @@ namespace iTasks
             AppContext.Programadores.Add(programador);
 
         }
+
+        
     }
 
 
 
-    }
+}
 
 
