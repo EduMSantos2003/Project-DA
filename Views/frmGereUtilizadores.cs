@@ -34,6 +34,9 @@ namespace iTasks
 
             lstListaGestores.DataSource = null;
             lstListaGestores.DataSource = AppContext.Gestores.ToList();
+
+            lstListaProgramadores.DataSource = null;
+            lstListaProgramadores.DataSource = AppContext.Programadores.ToList();
         }
 
         private void txtIdGestor_TextChanged(object sender, EventArgs e)
@@ -154,10 +157,6 @@ namespace iTasks
         }
 
 
-        private void btnCriarGestor_Click(object sender, EventArgs e)
-        {
-      
-        }
 
         private void btGravarProg_Click(object sender, EventArgs e)
         {
@@ -211,7 +210,6 @@ namespace iTasks
 
 
 
-
         }
 
         public void upDate_load()
@@ -238,7 +236,12 @@ namespace iTasks
 
         }
 
-        private void btEditarProgramador_Click(object sender, EventArgs e)
+
+
+
+
+
+        private void btEditarProg_Click(object sender, EventArgs e)
         {
             if (lstListaProgramadores.SelectedItem == null)
             {
@@ -251,9 +254,9 @@ namespace iTasks
                 Programador selecionado = (Programador)lstListaProgramadores.SelectedItem;
                 Programador programador = DbContext.Programadores.FirstOrDefault(g => g.Id == selecionado.Id);
 
-                if (Programador != null)
+                if (programador != null)
                 {
-                   
+
 
                     programador.Name = txtNomeProg.Text;
                     programador.Username = txtUsernameProg.Text;
@@ -262,7 +265,7 @@ namespace iTasks
                     DbContext.SaveChanges();
 
                     lstListaProgramadores.DataSource = null;
-                    lstListaProgramadores.DataSource = AppContext.Programadores.ToList();
+                    lstListaProgramadores.DataSource = DbContext.Programadores.ToList();
                     //AtualizarLista();
                     //LimparCampos();
 
@@ -271,9 +274,9 @@ namespace iTasks
             }
         }
 
-
         private void lstListaProgramadores_SelectedIndexChanged(object sender, EventArgs e)
         {
+                    
             int index = lstListaProgramadores.SelectedIndex;
             if (index == -1)
             {
@@ -283,10 +286,10 @@ namespace iTasks
             }
 
 
-            // Converter o item selecionado para Gestor
+            // Converter o item selecionado para Prog
             Programador programadorSelecionado = (Programador)lstListaProgramadores.SelectedItem;
 
-            // Preencher os campos do formulário com os dados do gestor
+            // Preencher os campos do formulário com os dados do prog
             txtNomeProg.Text = programadorSelecionado.Name;
             txtUsernameProg.Text = programadorSelecionado.Username;
             txtPasswordProg.Text = programadorSelecionado.Password;
@@ -294,11 +297,40 @@ namespace iTasks
             //cbGestorProg.SelectedItem = programadorSelecionado.Gestor; 
 
 
+        
+    }
 
+        private void btApagarProg_Click(object sender, EventArgs e)
+        {
+            if (lstListaProgramadores.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um gestor para remover.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            using (var DbContext = new AppDbContext())
+            {
+                Programador selecionado = (Programador)lstListaProgramadores.SelectedItem;
+                Programador programador = DbContext.Programadores.FirstOrDefault(g => g.Id == selecionado.Id);
+
+                if (programador != null)
+                {
+                    var confirm = MessageBox.Show("Tem certeza que deseja remover este gestor?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        DbContext.Programadores.Remove(programador);
+                        DbContext.SaveChanges();
+
+                        lstListaProgramadores.DataSource = null;
+                        lstListaProgramadores.DataSource = DbContext.Programadores.ToList();
+                        //AtualizarLista();
+                        //LimparCampos();
+
+                        MessageBox.Show("Gestor removido com sucesso.", "Removido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
         }
-
-
     }
 }
 
