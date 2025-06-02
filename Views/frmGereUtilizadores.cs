@@ -1,4 +1,4 @@
-﻿using iTasks.Data.iTasks.Data;
+﻿using iTasks.Data;
 using iTasks.Models;
 using System;
 using System.Collections.Generic;
@@ -297,8 +297,6 @@ namespace iTasks
 
 
         }
-
-
     }
 }
 

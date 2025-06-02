@@ -7,13 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTasks.Data.iTasks.Data;
+using iTasks.Data;
 using iTasks.Models;
 
 namespace iTasks
 {
+
     public partial class frmDetalhesTarefa : Form
     {
+        private void frmDetalhesTarefa_Load(object sender, EventArgs e)
+        {
+            using (var context = new AppDbContext())
+            {
+                cbTipoTarefa.DataSource = context.TiposTarefas.ToList();
+                cbTipoTarefa.DisplayMember = "NomeTarefa";
+
+                cbProgramador.DataSource = context.Programadores.ToList();
+                cbProgramador.DisplayMember = "Name";
+            }
+        }
+
         public frmDetalhesTarefa()
         {
             InitializeComponent();
@@ -26,19 +39,28 @@ namespace iTasks
 
         private void btGravar_Click(object sender, EventArgs e)
         {
-            try
+            using (var context = new AppDbContext())
             {
-                using (var DbContext = new AppDbContext())
+                var novaTarefa = new Tarefa
                 {
-                    string descricao = txtDesc.Text;
+                    Descricao = txtDesc.Text,
+                    TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem,
+                    Programador = (Programador)cbProgramador.SelectedItem,
+                    DataPrevistaInicio = dtInicio.Value,
+                    DataPrevistaFim = dtFim.Value,
+                    //OrdemExecucao = txtOrdem.Value,
+                    //StoryPoints = txtStoryPoints.Text,
+                    EstadoAtual = EstadoTarefa.ToDo,
+                    DataCriacao = DateTime.Now
+                };
 
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao gravar tarefa: " + ex.Message);
+                context.Tarefas.Add(novaTarefa);
+                //context.SaveChanges();
+
+                MessageBox.Show("Tarefa criada com sucesso!");
+                this.Close();
             }
         }
+
     }
 }

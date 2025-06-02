@@ -85,7 +85,6 @@
             this.txtNomeGestor.Name = "txtNomeGestor";
             this.txtNomeGestor.Size = new System.Drawing.Size(201, 20);
             this.txtNomeGestor.TabIndex = 36;
-            this.txtNomeGestor.TextChanged += new System.EventHandler(this.txtNomeGestor_TextChanged);
             // 
             // label4
             // 
