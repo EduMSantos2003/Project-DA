@@ -8,8 +8,6 @@ using iTasks.Models; // Adjust the namespace according to your project structure
 
 namespace iTasks.Data
 {
-    namespace iTasks.Data
-    {
         public class AppDbContext : DbContext
         {
             public AppDbContext() { }
@@ -22,6 +20,4 @@ namespace iTasks.Data
 
             
         }
-    }
-
 }
