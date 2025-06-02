@@ -214,10 +214,91 @@ namespace iTasks
 
         }
 
+        public void upDate_load()
+        {
+            cbGestorProg.DataSource = null;
+            cbGestorProg.DataSource = AppContext.Gestores.ToList();
+            cbGestorProg.DisplayMember = "Nome"; // para mostrar o nome
+        }
+
+        private void frmGereUtilizadores_Load(object sender, EventArgs e)
+        {
+            upDate_load();
+        }
+
+
         private void cbGestorProg_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            if (cbGestorProg.SelectedItem == null)
+                return;
+
+            Gestor gestorSelecionado = (Gestor)cbGestorProg.SelectedItem;
+            MessageBox.Show($"Gestor selecionado: {gestorSelecionado.Name}\nUsername: {gestorSelecionado.Username}");
+
         }
+
+        private void btEditarProgramador_Click(object sender, EventArgs e)
+        {
+            if (lstListaProgramadores.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um gestor da lista.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var DbContext = new AppDbContext())
+            {
+                Programador selecionado = (Programador)lstListaProgramadores.SelectedItem;
+                Programador programador = DbContext.Programadores.FirstOrDefault(g => g.Id == selecionado.Id);
+
+                if (Programador != null)
+                {
+                   
+
+                    programador.Name = txtNomeProg.Text;
+                    programador.Username = txtUsernameProg.Text;
+                    programador.Password = txtPasswordProg.Text;
+
+                    DbContext.SaveChanges();
+
+                    lstListaProgramadores.DataSource = null;
+                    lstListaProgramadores.DataSource = AppContext.Programadores.ToList();
+                    //AtualizarLista();
+                    //LimparCampos();
+
+                    MessageBox.Show("Gestor editado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+
+        private void lstListaProgramadores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lstListaProgramadores.SelectedIndex;
+            if (index == -1)
+            {
+                //  por dados a vazio
+
+                return;
+            }
+
+
+            // Converter o item selecionado para Gestor
+            Programador programadorSelecionado = (Programador)lstListaProgramadores.SelectedItem;
+
+            // Preencher os campos do formulário com os dados do gestor
+            txtNomeProg.Text = programadorSelecionado.Name;
+            txtUsernameProg.Text = programadorSelecionado.Username;
+            txtPasswordProg.Text = programadorSelecionado.Password;
+            cbNivelProg.SelectedItem = programadorSelecionado.NivelExperiencia;
+            //cbGestorProg.SelectedItem = programadorSelecionado.Gestor; 
+
+
+
+
+        }
+
+
     }
 }
 

@@ -46,6 +46,8 @@
             this.txtUsernameGestor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btApagarProgramador = new System.Windows.Forms.Button();
+            this.btEditarProgramador = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.cbGestorProg = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -256,6 +258,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btApagarProgramador);
+            this.groupBox3.Controls.Add(this.btEditarProgramador);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.cbGestorProg);
             this.groupBox3.Controls.Add(this.label6);
@@ -278,6 +282,27 @@
             this.groupBox3.TabIndex = 39;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Programadores";
+            // 
+            // btApagarProgramador
+            // 
+            this.btApagarProgramador.Location = new System.Drawing.Point(440, 525);
+            this.btApagarProgramador.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btApagarProgramador.Name = "btApagarProgramador";
+            this.btApagarProgramador.Size = new System.Drawing.Size(302, 35);
+            this.btApagarProgramador.TabIndex = 47;
+            this.btApagarProgramador.Text = "Apagar Dados";
+            this.btApagarProgramador.UseVisualStyleBackColor = true;
+            // 
+            // btEditarProgramador
+            // 
+            this.btEditarProgramador.Location = new System.Drawing.Point(439, 480);
+            this.btEditarProgramador.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btEditarProgramador.Name = "btEditarProgramador";
+            this.btEditarProgramador.Size = new System.Drawing.Size(302, 35);
+            this.btEditarProgramador.TabIndex = 46;
+            this.btEditarProgramador.Text = "Editar Dados";
+            this.btEditarProgramador.UseVisualStyleBackColor = true;
+            this.btEditarProgramador.Click += new System.EventHandler(this.btEditarProgramador_Click);
             // 
             // label11
             // 
@@ -435,6 +460,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGereUtilizadores";
             this.Text = "frmListaUtilizadores";
+            this.Load += new System.EventHandler(this.frmGereUtilizadores_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -480,5 +506,7 @@
         private System.Windows.Forms.ComboBox cbGestorProg;
         private System.Windows.Forms.Button btEditarGestor;
         private System.Windows.Forms.Button btApagarGestor;
+        private System.Windows.Forms.Button btApagarProgramador;
+        private System.Windows.Forms.Button btEditarProgramador;
     }
 }
