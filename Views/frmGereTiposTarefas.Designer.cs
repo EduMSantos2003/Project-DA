@@ -56,6 +56,7 @@
             this.lstLista.Name = "lstLista";
             this.lstLista.Size = new System.Drawing.Size(268, 366);
             this.lstLista.TabIndex = 0;
+            this.lstLista.SelectedIndexChanged += new System.EventHandler(this.lstLista_SelectedIndexChanged);
             // 
             // txtDesc
             // 

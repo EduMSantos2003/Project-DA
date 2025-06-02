@@ -218,6 +218,11 @@ namespace iTasks
         {
 
         }
+
+        private void txtNomeGestor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

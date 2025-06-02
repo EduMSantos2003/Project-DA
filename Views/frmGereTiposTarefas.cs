@@ -16,5 +16,10 @@ namespace iTasks
         {
             InitializeComponent();
         }
+
+        private void lstLista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
