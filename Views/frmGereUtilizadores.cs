@@ -13,6 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace iTasks
 {
@@ -29,6 +30,10 @@ namespace iTasks
             AppContext = new AppDbContext();
             cbDepartamento.DataSource = Enum.GetValues(typeof(Departamento));
             cbNivelProg.DataSource = Enum.GetValues(typeof(NivelExperiencia));
+
+
+            lstListaGestores.DataSource = null;
+            lstListaGestores.DataSource = AppContext.Gestores.ToList();
         }
 
         private void txtIdGestor_TextChanged(object sender, EventArgs e)
@@ -59,7 +64,7 @@ namespace iTasks
 
                 DbContext.SaveChanges();
 
-                lstListaGestores.DataSource = null; 
+                lstListaGestores.DataSource = null;
                 lstListaGestores.DataSource = DbContext.Gestores.ToList();
 
                 //txtNomeGestor.Clear();
@@ -86,10 +91,16 @@ namespace iTasks
 
                 if (gestor != null)
                 {
-                    String name = txtNomeGestor.Text;
+                    /*String name = txtNomeGestor.Text;
                     String Username = txtUsernameGestor.Text;
                     String Password = txtPasswordGestor.Text;
                     gestor.Departamento = (Departamento)cbDepartamento.SelectedItem;
+                    gestor.GereUtilizadores = chkGereUtilizadores.Checked;*/
+
+                    gestor.Name = txtNomeGestor.Text;
+                    gestor.Username = txtUsernameGestor.Text;
+                    gestor.Password = txtPasswordGestor.Text;
+                    gestor.Departamento = (Departamento) cbDepartamento.SelectedItem;
                     gestor.GereUtilizadores = chkGereUtilizadores.Checked;
 
                     DbContext.SaveChanges();
@@ -150,29 +161,64 @@ namespace iTasks
 
         private void btGravarProg_Click(object sender, EventArgs e)
         {
-            String name = txtNomeProg.Text;
-            String username = txtUsernameProg.Text;
-            String password = txtPasswordProg.Text;
-            NivelExperiencia selectedItem = (NivelExperiencia)cbNivelProg.SelectedItem;
-         
-            
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            using (var DbContext = new AppDbContext())
             {
-                MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                String name = txtNomeProg.Text;
+                String username = txtUsernameProg.Text;
+                String password = txtPasswordProg.Text;
+                NivelExperiencia selectedItem = (NivelExperiencia)cbNivelProg.SelectedItem;
+
+
+
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                {
+                    MessageBox.Show("Por favor, preencha todos os campos.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Programador programador = new Programador(name, username, password, nivelExperiencia);
+                DbContext.Programadores.Add(programador);
+
+
+                DbContext.SaveChanges();
+
+                lstListaProgramadores.DataSource = null;
+                lstListaProgramadores.DataSource = DbContext.Programadores.ToList();
+            }
+        }
+
+        private void lstListaGestores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lstListaGestores.SelectedIndex;
+            if (index == -1)
+            {
+                //  por dados a vazio
+
                 return;
             }
 
-            Programador programador = new Programador(name, username, password, nivelExperiencia);
-            AppContext.Programadores.Add(programador);
+
+            // Converter o item selecionado para Gestor
+            Gestor gestorSelecionado = (Gestor)lstListaGestores.SelectedItem;
+
+            // Preencher os campos do formulário com os dados do gestor
+            txtNomeGestor.Text = gestorSelecionado.Name;
+            txtUsernameGestor.Text = gestorSelecionado.Username;
+            txtPasswordGestor.Text = gestorSelecionado.Password;
+            cbDepartamento.SelectedItem = gestorSelecionado.Departamento;
+            chkGereUtilizadores.Checked = gestorSelecionado.GereUtilizadores;
+
+
+
 
         }
 
-        
+        private void cbGestorProg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-
-
-
 }
 
 

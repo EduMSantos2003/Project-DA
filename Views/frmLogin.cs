@@ -32,8 +32,8 @@ namespace iTasks
             string name = txtUsername.Text;
             string password = txtPassword.Text;
 
-            if (name == "abc" && password == "123") 
-            {
+            if (name == "" && password == "") 
+           {
                 MessageBox.Show("Login realizado com sucesso!");
                 frmKanban secondForm = new frmKanban();
                 secondForm.UserName = name;

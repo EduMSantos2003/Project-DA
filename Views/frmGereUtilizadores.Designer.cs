@@ -36,6 +36,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstListaGestores = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btApagarGestor = new System.Windows.Forms.Button();
             this.btEditarGestor = new System.Windows.Forms.Button();
             this.chkGereUtilizadores = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtNomeProg = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btApagarGestor = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -138,6 +138,7 @@
             this.lstListaGestores.Name = "lstListaGestores";
             this.lstListaGestores.Size = new System.Drawing.Size(403, 671);
             this.lstListaGestores.TabIndex = 0;
+            this.lstListaGestores.SelectedIndexChanged += new System.EventHandler(this.lstListaGestores_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -164,6 +165,17 @@
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestores";
+            // 
+            // btApagarGestor
+            // 
+            this.btApagarGestor.Location = new System.Drawing.Point(442, 525);
+            this.btApagarGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btApagarGestor.Name = "btApagarGestor";
+            this.btApagarGestor.Size = new System.Drawing.Size(302, 35);
+            this.btApagarGestor.TabIndex = 45;
+            this.btApagarGestor.Text = "Apagar Dados";
+            this.btApagarGestor.UseVisualStyleBackColor = true;
+            this.btApagarGestor.Click += new System.EventHandler(this.btApagarGestor_Click);
             // 
             // btEditarGestor
             // 
@@ -285,6 +297,7 @@
             this.cbGestorProg.Name = "cbGestorProg";
             this.cbGestorProg.Size = new System.Drawing.Size(300, 28);
             this.cbGestorProg.TabIndex = 43;
+            this.cbGestorProg.SelectedIndexChanged += new System.EventHandler(this.cbGestorProg_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -411,17 +424,6 @@
             this.label10.Size = new System.Drawing.Size(55, 20);
             this.label10.TabIndex = 35;
             this.label10.Text = "Nome:";
-            // 
-            // btApagarGestor
-            // 
-            this.btApagarGestor.Location = new System.Drawing.Point(442, 525);
-            this.btApagarGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btApagarGestor.Name = "btApagarGestor";
-            this.btApagarGestor.Size = new System.Drawing.Size(302, 35);
-            this.btApagarGestor.TabIndex = 45;
-            this.btApagarGestor.Text = "Apagar Dados";
-            this.btApagarGestor.UseVisualStyleBackColor = true;
-            this.btApagarGestor.Click += new System.EventHandler(this.btApagarGestor_Click);
             // 
             // frmGereUtilizadores
             // 
