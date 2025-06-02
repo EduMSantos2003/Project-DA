@@ -61,5 +61,11 @@ namespace iTasks
             Form frmGereUtilizadores = new frmGereUtilizadores();
             frmGereUtilizadores.ShowDialog();
         }
+
+        private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frmGereTiposTarefas = new frmGereTiposTarefas();
+            frmGereTiposTarefas.ShowDialog();
+        }
     }
 }
