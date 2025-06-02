@@ -176,6 +176,7 @@
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UserLogin.cs" />
     <EmbeddedResource Include="Views\frmConsultarTarefasConcluidas.resx">
       <DependentUpon>frmConsultarTarefasConcluidas.cs</DependentUpon>
     </EmbeddedResource>
