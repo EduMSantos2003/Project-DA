@@ -14,11 +14,6 @@ namespace iTasks.Models
         }
         public NivelExperiencia NivelExperiencia { get; set; }
 
-        
-       
-
-
-
         public Programador (string name, string username, string password, NivelExperiencia nivelExperiencia) : base(name, username, password)
         {
             this.NivelExperiencia = NivelExperiencia;
