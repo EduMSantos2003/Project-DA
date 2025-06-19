@@ -11,6 +11,7 @@ namespace iTasks.Models
     {
         public TipoTarefa()
         {
+
         }
         
         [Key]
@@ -18,4 +19,5 @@ namespace iTasks.Models
         public string NomeTarefa { get; set; }
 
     }
+
 }

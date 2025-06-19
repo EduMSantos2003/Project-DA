@@ -15,7 +15,7 @@ namespace iTasks
 
     public partial class frmDetalhesTarefa : Form
     {
-        private void frmDetalhesTarefa_Load(object sender, EventArgs e)
+        private void FrmDetalhesTarefa_Load(object sender, EventArgs e)
         {
             using (var context = new AppDbContext())
             {
@@ -32,12 +32,82 @@ namespace iTasks
             InitializeComponent();
         }
 
+
+        private void frmDetalhesTarefa_Load(object sender, EventArgs e)
+        {
+            using (var context = new AppDbContext())
+            {
+                cbTipoTarefa.DataSource = context.TiposTarefas.ToList();
+                cbTipoTarefa.DisplayMember = "NomeTarefa";
+
+                cbProgramador.DataSource = context.Programadores.ToList();
+                cbProgramador.DisplayMember = "Name";
+            }
+
+            // Datas padrão
+            dtInicio.Value = DateTime.Today;
+            dtFim.Value = DateTime.Today.AddDays(7);
+        }
+
         private void btFechar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+
         private void btGravar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDesc.Text))
+            {
+                MessageBox.Show("A descrição é obrigatória.");
+                return;
+            }
+
+            if (cbTipoTarefa.SelectedItem == null || cbProgramador.SelectedItem == null)
+            {
+                MessageBox.Show("Seleciona o tipo de tarefa e o programador.");
+                return;
+            }
+
+            try
+            {
+                using (var context = new AppDbContext())
+                {
+                    var novaTarefa = new Tarefa
+                    {
+                        Descricao = txtDesc.Text,
+                        TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem.Idtarefa)
+                        Programador = (Programador)cbProgramador.SelectedItem.Id)
+                        //GestorId = frmLogin.utilizadorlogado.Id as Gestor,
+                        DataPrevistaInicio = dtInicio.Value,
+                        DataPrevistaFim = dtFim.Value,
+                        OrdemExecucao = int.TryParse(txtOrdem.Text, out int ordem) ? ordem : 1,
+                        StoryPoints = int.TryParse(txtStoryPoints.Text, out int sp) ? sp : 1,
+                        EstadoAtual = EstadoTarefa.ToDo,
+                        DataCriacao = DateTime.Now
+                    };
+
+                    context.Tarefas.Add(novaTarefa);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Tarefa criada com sucesso!");
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                var erroInterno = ex.InnerException?.InnerException?.Message ?? ex.Message;
+                MessageBox.Show("Erro ao gravar: " + erroInterno);
+            }
+        }
+
+
+
+
+
+
+
+        /*private void btGravar_Click(object sender, EventArgs e)
         {
             using (var context = new AppDbContext())
             {
@@ -56,11 +126,30 @@ namespace iTasks
 
                 context.Tarefas.Add(novaTarefa);
                 //context.SaveChanges();
+                
 
                 MessageBox.Show("Tarefa criada com sucesso!");
-                this.Close();
+                //this.Close();
+            }
+
+            /*private void btnGravar_Click(object sender, EventArgs e)
+            {
+            using (var context = new AppDbContext())
+            {
+                var tarefa = new Tarefa
+                {
+                    DataPrevistaInicio = dtpPrevistaInicio.Value,
+                    DataPrevistaFim = dtpPrevistaFim.Value,
+                    StoryPoints = (int)numStoryPoints.Value,
+                    OrdemExecucao = (int)numOrdemExecucao.Value,
+                    TipoTarefaId = ((TipoTarefa)cbTipoTarefa.SelectedItem).IdTarefa,
+                    Estado = EstadoAtual.ToDo,
+                    GestorId = ((Gestor)FrmLogin.UtilizadorLogado).Id,
+                    ProgramadorId = ((Programador)cbProgramador.SelectedItem).Id,
+                };
             }
         }
+        }*/
 
     }
 }
