@@ -33,22 +33,6 @@ namespace iTasks
         }
 
 
-        private void frmDetalhesTarefa_Load(object sender, EventArgs e)
-        {
-            using (var context = new AppDbContext())
-            {
-                cbTipoTarefa.DataSource = context.TiposTarefas.ToList();
-                cbTipoTarefa.DisplayMember = "NomeTarefa";
-
-                cbProgramador.DataSource = context.Programadores.ToList();
-                cbProgramador.DisplayMember = "Name";
-            }
-
-            // Datas padrão
-            dtInicio.Value = DateTime.Today;
-            dtFim.Value = DateTime.Today.AddDays(7);
-        }
-
         private void btFechar_Click(object sender, EventArgs e)
         {
             Close();
@@ -73,18 +57,20 @@ namespace iTasks
             {
                 using (var context = new AppDbContext())
                 {
+                    var tipoTarefaSelecionado = (TipoTarefa)cbTipoTarefa.SelectedItem;
+                    var programadorSelecionado = (Programador)cbProgramador.SelectedItem;
                     var novaTarefa = new Tarefa
                     {
                         Descricao = txtDesc.Text,
-                        TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem.Idtarefa)
-                        Programador = (Programador)cbProgramador.SelectedItem.Id)
-                        //GestorId = frmLogin.utilizadorlogado.Id as Gestor,
+                        TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem,
+                        Programador = (Programador)cbProgramador.SelectedItem,
                         DataPrevistaInicio = dtInicio.Value,
                         DataPrevistaFim = dtFim.Value,
-                        OrdemExecucao = int.TryParse(txtOrdem.Text, out int ordem) ? ordem : 1,
-                        StoryPoints = int.TryParse(txtStoryPoints.Text, out int sp) ? sp : 1,
+                        //OrdemExecucao = txtOrdem.Value,
+                        //StoryPoints = txtStoryPoints.Text,
                         EstadoAtual = EstadoTarefa.ToDo,
                         DataCriacao = DateTime.Now
+                     
                     };
 
                     context.Tarefas.Add(novaTarefa);
