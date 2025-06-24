@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    public class TipoTarefa
+    public class Projeto
     {
         [Key]
         public int Id { get; set; } // Chave primária
 
-        public string NomeTarefa { get; set; } // Nome do tipo de tarefa
+        public string Descricao { get; set; } // Nome do projeto
+
+        // Lista de tarefas associadas
+        public ICollection<Tarefa> Tarefas { get; set; }
     }
 }

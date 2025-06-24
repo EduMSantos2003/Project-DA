@@ -25,24 +25,31 @@ namespace iTasks
         {
             if (txtDesc.Text == "")
             {
-                MessageBox.Show("Escreve uma descrição para a tarefa!");
+                MessageBox.Show("Escreve uma descrição para o Tipo de Tarefa!");
                 return;
             }
 
-            // Criar o texto da tarefa com o ID automático
-            string tarefa = "ID: " + proximoId + " - " + txtDesc.Text;
-            lstLista.Items.Add(tarefa);
+            using (var context = new AppDbContext())
+            {
+                TipoTarefa novaTipo = new TipoTarefa
+                {
+                    NomeTarefa = txtDesc.Text
+                };
 
-            // Aumentar o ID para a próxima tarefa
-            proximoId++;
+                context.TiposTarefas.Add(novaTipo);
+                context.SaveChanges();
 
-            // Limpar o campo de descrição
+                // Atualizar a lista
+                lstLista.DataSource = null;
+                lstLista.DataSource = context.TiposTarefas.ToList();
+                lstLista.DisplayMember = "NomeTarefa";
+            }
+
+            // Limpar campos
             txtDesc.Clear();
             txtDesc.Focus();
-
-            // Atualizar o campo txtId para mostrar o ID (opcional)
-            txtId.Text = proximoId.ToString();
         }
+
 
     }
 }

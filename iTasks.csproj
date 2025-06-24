@@ -124,11 +124,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\AppDbContext.cs" />
+    <Compile Include="Migrations\202506241355083_InitialCreate.cs" />
+    <Compile Include="Migrations\202506241355083_InitialCreate.Designer.cs">
+      <DependentUpon>202506241355083_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506241358370_AddProjetosEOutros.cs" />
+    <Compile Include="Migrations\202506241358370_AddProjetosEOutros.Designer.cs">
+      <DependentUpon>202506241358370_AddProjetosEOutros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506241413181_AddTabelasFaltantes.cs" />
+    <Compile Include="Migrations\202506241413181_AddTabelasFaltantes.Designer.cs">
+      <DependentUpon>202506241413181_AddTabelasFaltantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\EstadoTarefa.cs" />
     <Compile Include="Models\Gestor.cs" />
     <Compile Include="Models\NivelExperiencia.cs" />
     <Compile Include="Models\Programador.cs" />
+    <Compile Include="Models\Projeto.cs" />
+    <Compile Include="Models\Sessao.cs" />
     <Compile Include="Models\TipoTarefa.cs" />
     <Compile Include="Views\frmConsultarTarefasConcluidas.cs">
       <SubType>Form</SubType>
@@ -177,6 +192,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\UserLogin.cs" />
+    <EmbeddedResource Include="Migrations\202506241355083_InitialCreate.resx">
+      <DependentUpon>202506241355083_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506241358370_AddProjetosEOutros.resx">
+      <DependentUpon>202506241358370_AddProjetosEOutros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506241413181_AddTabelasFaltantes.resx">
+      <DependentUpon>202506241413181_AddTabelasFaltantes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmConsultarTarefasConcluidas.resx">
       <DependentUpon>frmConsultarTarefasConcluidas.cs</DependentUpon>
     </EmbeddedResource>

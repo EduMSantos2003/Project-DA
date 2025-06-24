@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iTasks.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
 
 namespace iTasks.Models
 {
     public class Programador : Utilizador
     {
+        public NivelExperiencia NivelExperiencia { get; set; } // Enum: Junior / Senior
 
-        public Programador()
-        {
-        }
-        public NivelExperiencia NivelExperiencia { get; set; }
+        // Construtor sem argumentos (obrigatório para EF)
+        public Programador() { }
 
-        public Programador (string name, string username, string password, NivelExperiencia nivelExperiencia) : base(name, username, password)
+        // Construtor com argumentos — para usares nos formulários
+        public Programador(string name, string username, string password, NivelExperiencia nivelExperiencia)
         {
-            this.NivelExperiencia = NivelExperiencia;
-           
+            Name = name;
+            Username = username;
+            Password = password;
+            NivelExperiencia = nivelExperiencia;
         }
     }
-
 }

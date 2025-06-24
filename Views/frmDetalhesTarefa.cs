@@ -12,32 +12,33 @@ using iTasks.Models;
 
 namespace iTasks
 {
-
     public partial class frmDetalhesTarefa : Form
     {
-        private void FrmDetalhesTarefa_Load(object sender, EventArgs e)
+        private int gestorIdAtual;
+
+        public frmDetalhesTarefa(int gestorId)
+        {
+            InitializeComponent();
+            this.gestorIdAtual = gestorId;
+        }
+
+        private void frmDetalhesTarefa_Load(object sender, EventArgs e)
         {
             using (var context = new AppDbContext())
             {
                 cbTipoTarefa.DataSource = context.TiposTarefas.ToList();
                 cbTipoTarefa.DisplayMember = "NomeTarefa";
+                cbTipoTarefa.ValueMember = "Id";
 
                 cbProgramador.DataSource = context.Programadores.ToList();
                 cbProgramador.DisplayMember = "Name";
+                cbProgramador.ValueMember = "Id";
+
+                cbProjeto.DataSource = context.Projetos.ToList();
+                cbProjeto.DisplayMember = "Descricao";
+                cbProjeto.ValueMember = "Id";
             }
         }
-
-        public frmDetalhesTarefa()
-        {
-            InitializeComponent();
-        }
-
-
-        private void btFechar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
 
         private void btGravar_Click(object sender, EventArgs e)
         {
@@ -47,9 +48,23 @@ namespace iTasks
                 return;
             }
 
-            if (cbTipoTarefa.SelectedItem == null || cbProgramador.SelectedItem == null)
+            if (cbTipoTarefa.SelectedItem == null || cbProgramador.SelectedItem == null || cbProjeto.SelectedItem == null)
             {
-                MessageBox.Show("Seleciona o tipo de tarefa e o programador.");
+                MessageBox.Show("Seleciona o Tipo de Tarefa, o Programador e o Projeto.");
+                return;
+            }
+
+            int ordem = 0;
+            if (!int.TryParse(txtOrdem.Text, out ordem))
+            {
+                MessageBox.Show("Ordem de execução inválida!");
+                return;
+            }
+
+            int storyPoints = 0;
+            if (!int.TryParse(txtStoryPoints.Text, out storyPoints))
+            {
+                MessageBox.Show("StoryPoints inválidos!");
                 return;
             }
 
@@ -57,20 +72,33 @@ namespace iTasks
             {
                 using (var context = new AppDbContext())
                 {
-                    var tipoTarefaSelecionado = (TipoTarefa)cbTipoTarefa.SelectedItem;
-                    var programadorSelecionado = (Programador)cbProgramador.SelectedItem;
+                    int programadorId = (int)cbProgramador.SelectedValue;
+
+                    bool ordemDuplicada = context.Tarefas.Any(t => t.ProgramadorId == programadorId
+                                                                && t.OrdemExecucao == ordem);
+
+                    if (ordemDuplicada)
+                    {
+                        MessageBox.Show("Já existe uma tarefa com esta Ordem de Execução para este Programador!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     var novaTarefa = new Tarefa
                     {
                         Descricao = txtDesc.Text,
-                        TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem,
-                        Programador = (Programador)cbProgramador.SelectedItem,
+                        EstadoAtual = EstadoTarefa.ToDo,
+                        DataCriacao = DateTime.Now,
                         DataPrevistaInicio = dtInicio.Value,
                         DataPrevistaFim = dtFim.Value,
-                        //OrdemExecucao = txtOrdem.Value,
-                        //StoryPoints = txtStoryPoints.Text,
-                        EstadoAtual = EstadoTarefa.ToDo,
-                        DataCriacao = DateTime.Now
-                     
+
+                        TipoTarefaId = (int)cbTipoTarefa.SelectedValue,
+                        ProgramadorId = programadorId,
+                        ProjetoId = (int)cbProjeto.SelectedValue,
+
+                        StoryPoints = storyPoints,
+                        OrdemExecucao = ordem,
+
+                        GestorId = gestorIdAtual
                     };
 
                     context.Tarefas.Add(novaTarefa);
@@ -87,55 +115,13 @@ namespace iTasks
             }
         }
 
-
-
-
-
-
-
-        /*private void btGravar_Click(object sender, EventArgs e)
+        private void btFechar_Click(object sender, EventArgs e)
         {
-            using (var context = new AppDbContext())
-            {
-                var novaTarefa = new Tarefa
-                {
-                    Descricao = txtDesc.Text,
-                    TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem,
-                    Programador = (Programador)cbProgramador.SelectedItem,
-                    DataPrevistaInicio = dtInicio.Value,
-                    DataPrevistaFim = dtFim.Value,
-                    //OrdemExecucao = txtOrdem.Value,
-                    //StoryPoints = txtStoryPoints.Text,
-                    EstadoAtual = EstadoTarefa.ToDo,
-                    DataCriacao = DateTime.Now
-                };
-
-                context.Tarefas.Add(novaTarefa);
-                //context.SaveChanges();
-                
-
-                MessageBox.Show("Tarefa criada com sucesso!");
-                //this.Close();
-            }
-
-            /*private void btnGravar_Click(object sender, EventArgs e)
-            {
-            using (var context = new AppDbContext())
-            {
-                var tarefa = new Tarefa
-                {
-                    DataPrevistaInicio = dtpPrevistaInicio.Value,
-                    DataPrevistaFim = dtpPrevistaFim.Value,
-                    StoryPoints = (int)numStoryPoints.Value,
-                    OrdemExecucao = (int)numOrdemExecucao.Value,
-                    TipoTarefaId = ((TipoTarefa)cbTipoTarefa.SelectedItem).IdTarefa,
-                    Estado = EstadoAtual.ToDo,
-                    GestorId = ((Gestor)FrmLogin.UtilizadorLogado).Id,
-                    ProgramadorId = ((Programador)cbProgramador.SelectedItem).Id,
-                };
-            }
+            this.Close();
         }
-        }*/
+        private void cbProgramador_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

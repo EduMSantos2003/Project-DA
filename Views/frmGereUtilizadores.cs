@@ -160,15 +160,12 @@ namespace iTasks
 
         private void btGravarProg_Click(object sender, EventArgs e)
         {
-
             using (var DbContext = new AppDbContext())
             {
-                String name = txtNomeProg.Text;
-                String username = txtUsernameProg.Text;
-                String password = txtPasswordProg.Text;
+                string name = txtNomeProg.Text;
+                string username = txtUsernameProg.Text;
+                string password = txtPasswordProg.Text;
                 NivelExperiencia selectedItem = (NivelExperiencia)cbNivelProg.SelectedItem;
-
-
 
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
                 {
@@ -176,14 +173,21 @@ namespace iTasks
                     return;
                 }
 
-                Programador programador = new Programador(name, username, password, nivelExperiencia);
+                Programador programador = new Programador(name, username, password, selectedItem);
                 DbContext.Programadores.Add(programador);
-
 
                 DbContext.SaveChanges();
 
                 lstListaProgramadores.DataSource = null;
                 lstListaProgramadores.DataSource = DbContext.Programadores.ToList();
+
+                // Limpar os campos (opcional)
+                txtNomeProg.Clear();
+                txtUsernameProg.Clear();
+                txtPasswordProg.Clear();
+                cbNivelProg.SelectedIndex = 0;
+
+                MessageBox.Show("Programador criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

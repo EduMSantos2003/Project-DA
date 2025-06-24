@@ -8,6 +8,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTasks.Data;
+using iTasks.Models;
 
 namespace iTasks
 {
@@ -21,6 +23,34 @@ namespace iTasks
             this.Load += frmKanbam_Load;
         }
 
+        private void CarregarTarefas()
+        {
+            using (var context = new AppDbContext())
+            {
+                // ToDo
+                var tarefasToDo = context.Tarefas
+                    .Where(t => t.EstadoAtual == EstadoTarefa.ToDo)
+                    .ToList();
+                lstTodo.DataSource = tarefasToDo;
+                lstTodo.DisplayMember = "Descricao";
+
+                // Doing
+                var tarefasDoing = context.Tarefas
+                    .Where(t => t.EstadoAtual == EstadoTarefa.Doing)
+                    .ToList();
+                lstDoing.DataSource = tarefasDoing;
+                lstDoing.DisplayMember = "Descricao";
+
+                // Done
+                var tarefasDone = context.Tarefas
+                    .Where(t => t.EstadoAtual == EstadoTarefa.Done)
+                    .ToList();
+                lstDone.DataSource = tarefasDone;
+                lstDone.DisplayMember = "Descricao";
+            }
+        }
+
+
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja realmente sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -31,8 +61,12 @@ namespace iTasks
 
         private void btNova_Click(object sender, EventArgs e)
         {
-            Form frmDetalhesTarefa = new frmDetalhesTarefa();
-            frmDetalhesTarefa.ShowDialog();
+            int gestorId = Sessao.GestorIdLogado;
+
+            frmDetalhesTarefa frm = new frmDetalhesTarefa(gestorId);
+            frm.ShowDialog();
+
+            CarregarTarefas(); // Atualizar o Kanban
         }
 
         private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)

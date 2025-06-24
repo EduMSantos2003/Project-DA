@@ -9,41 +9,39 @@ namespace iTasks.Models
 {
     public class Tarefa
     {
-        internal Gestor GestorId;
-
         [Key]
-        public int Id { get; set; }
+        public int Id { get; set; } // Chave primária da tarefa
 
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } // Descrição da tarefa
 
-        public EstadoTarefa EstadoAtual { get; set; } = EstadoTarefa.ToDo; //Enum
+        public EstadoTarefa EstadoAtual { get; set; } = EstadoTarefa.ToDo; // Estado (Enum)
 
-        public DateTime DataCriacao { get; set; } = DateTime.Now;
-        public DateTime DataPrevistaInicio { get; set; }
+        public DateTime DataCriacao { get; set; } = DateTime.Now; // Data de criação
+
+        public DateTime DataPrevistaInicio { get; set; } // Previsto
         public DateTime DataPrevistaFim { get; set; }
-        public DateTime DataRealInicio { get; set; }
-        public DateTime DataRealFim { get; set; }
 
-        public int OrdemExecucao { get; set; }
-
-        public  TipoTarefa TipoTarefa { get; set; }
-        /*public int TipoTarefaId { get; set; }
-        public virtual TipoTarefa TipoTarefa { get; set; }*/
-
-        //public  Gestor Gestor { get; set; }
-
-        public Programador Programador { get; set; }
-
-        public int StoryPoints { get; set; }
-        /*public int ProgramadorId { get; set; }
-        public virtual Programador Programador { get; set; }
-
-        public int GestorId { get; set; }
-        public virtual Gestor Gestor { get; set; }
-
-        public DateTime? DataRealInicio { get; set; }
+        public DateTime? DataRealInicio { get; set; } // Real (nullable)
         public DateTime? DataRealFim { get; set; }
 
-        public DateTime DataCriacao { get; set; } = DateTime.Now;*/
+        public int OrdemExecucao { get; set; } // Ordem definida pelo gestor
+
+        // Foreign key para TipoTarefa
+        public int TipoTarefaId { get; set; }
+        public TipoTarefa TipoTarefa { get; set; }
+
+        // Foreign key para Programador
+        public int ProgramadorId { get; set; }
+        public Programador Programador { get; set; }
+
+        // Foreign key para Gestor
+        public int GestorId { get; set; }
+        public Gestor Gestor { get; set; }
+
+        // Foreign key para Projeto
+        public int ProjetoId { get; set; }
+        public Projeto Projeto { get; set; }
+
+        public int StoryPoints { get; set; } // SP da tarefa
     }
 }
