@@ -22,6 +22,8 @@ namespace iTasks
         public frmLogin()
         {
             InitializeComponent();
+
+            //teste
         }
 
         private void btLogin_Click(object sender, EventArgs e)
