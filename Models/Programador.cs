@@ -13,6 +13,7 @@ namespace iTasks.Models
     {
         public NivelExperiencia NivelExperiencia { get; set; } // Enum: Junior / Senior
 
+
         // Construtor sem argumentos (obrigatório para EF)
         public Programador() { }
 

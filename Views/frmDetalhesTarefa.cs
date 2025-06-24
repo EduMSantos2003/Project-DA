@@ -16,12 +16,17 @@ namespace iTasks
     {
         private int gestorIdAtual;
 
+        public Tarefa TarefaParaEditar { get; set; }
+
+
+
         public frmDetalhesTarefa(int gestorId)
         {
             InitializeComponent();
             this.gestorIdAtual = gestorId;
 
             cbTipoTarefa.SelectedIndexChanged += cbTipoTarefa_SelectedIndexChanged;
+
 
         }
 
@@ -41,6 +46,21 @@ namespace iTasks
                 cbProjeto.DataSource = context.Projetos.ToList();
                 cbProjeto.DisplayMember = "Descricao";
                 cbProjeto.ValueMember = "Id";
+
+                if (TarefaParaEditar != null)
+                {
+                    txtDesc.Text = TarefaParaEditar.Descricao;
+                    txtOrdem.Text = TarefaParaEditar.OrdemExecucao.ToString();
+                    txtStoryPoints.Text = TarefaParaEditar.StoryPoints.ToString();
+
+                    cbTipoTarefa.SelectedValue = TarefaParaEditar.TipoTarefaId;
+                    cbProgramador.SelectedValue = TarefaParaEditar.ProgramadorId;
+                    cbProjeto.SelectedValue = TarefaParaEditar.ProjetoId;
+
+                    dtInicio.Value = TarefaParaEditar.DataPrevistaInicio;
+                    dtFim.Value = TarefaParaEditar.DataPrevistaFim;
+
+                }
             }
         }
 
@@ -133,7 +153,21 @@ namespace iTasks
             if (cbTipoTarefa.SelectedItem is TipoTarefa tipoSelecionado)
             {
                 txtId.Text = tipoSelecionado.Id.ToString();
+
+               
+                    txtId.Text = tipoSelecionado.Id.ToString();
+
+                    // Só alterar datas se for uma nova tarefa
+                    if (TarefaParaEditar == null)
+                    {
+                        dtInicio.Value = DateTime.Today;
+                        dtFim.Value = DateTime.Today.AddDays(10);
+                    }
+                
             }
+
         }
+
+
     }
 }

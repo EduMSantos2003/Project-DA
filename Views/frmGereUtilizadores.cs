@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -175,7 +176,7 @@ namespace iTasks
 
                 Programador programador = new Programador(name, username, password, selectedItem);
                 DbContext.Programadores.Add(programador);
-
+              
                 DbContext.SaveChanges();
 
                 lstListaProgramadores.DataSource = null;
@@ -215,6 +216,8 @@ namespace iTasks
 
 
 
+
+
         }
 
         public void upDate_load()
@@ -234,18 +237,14 @@ namespace iTasks
 
         private void cbGestorProg_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (cbGestorProg.SelectedItem == null)
-                return;
-
-            Gestor gestorSelecionado = (Gestor)cbGestorProg.SelectedItem;
-            MessageBox.Show($"Gestor selecionado: {gestorSelecionado.Name}\nUsername: {gestorSelecionado.Username}");
+            using (var context = new AppDbContext()) 
+            {
+                cbGestorProg.DataSource = context.Gestores.ToList();
+                cbGestorProg.DisplayMember = "Username";
+                cbGestorProg.ValueMember = "Id";
+            }
 
         }
-
-
-
-
 
 
         private void btEditarProg_Click(object sender, EventArgs e)
@@ -302,11 +301,9 @@ namespace iTasks
             txtUsernameProg.Text = programadorSelecionado.Username;
             txtPasswordProg.Text = programadorSelecionado.Password;
             cbNivelProg.SelectedItem = programadorSelecionado.NivelExperiencia;
-            //cbGestorProg.SelectedItem = programadorSelecionado.Gestor; 
+            cbGestorProg.SelectedItem = programadorSelecionado.Username;
 
-
-        
-    }
+        }
 
         private void btApagarProg_Click(object sender, EventArgs e)
         {
@@ -339,6 +336,8 @@ namespace iTasks
                 }
             }
         }
+
+       
     }
 }
 

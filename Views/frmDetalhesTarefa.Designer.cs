@@ -17,14 +17,14 @@
         private System.Windows.Forms.ComboBox cbTipoTarefa;
         private System.Windows.Forms.DateTimePicker dtInicio;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelDataPrevistaFim;
         private System.Windows.Forms.DateTimePicker dtFim;
         private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtDataRealini;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelDataRealInicio;
         private System.Windows.Forms.TextBox txtdataRealFim;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelDataRealFim;
         private System.Windows.Forms.TextBox txtDataCriacao;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel1;
@@ -59,14 +59,14 @@
             this.cbTipoTarefa = new System.Windows.Forms.ComboBox();
             this.dtInicio = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelDataPrevistaFim = new System.Windows.Forms.Label();
             this.dtFim = new System.Windows.Forms.DateTimePicker();
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtDataRealini = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelDataRealInicio = new System.Windows.Forms.Label();
             this.txtdataRealFim = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.labelDataRealFim = new System.Windows.Forms.Label();
             this.txtDataCriacao = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -77,6 +77,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblProjeto = new System.Windows.Forms.Label();
             this.cbProjeto = new System.Windows.Forms.ComboBox();
+            this.labelDataPrevistaInicio = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtId
@@ -165,7 +166,7 @@
             // 
             // dtInicio
             // 
-            this.dtInicio.Location = new System.Drawing.Point(132, 248);
+            this.dtInicio.Location = new System.Drawing.Point(195, 252);
             this.dtInicio.Name = "dtInicio";
             this.dtInicio.Size = new System.Drawing.Size(200, 26);
             this.dtInicio.TabIndex = 14;
@@ -177,18 +178,18 @@
             this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 15;
             // 
-            // label7
+            // labelDataPrevistaFim
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 278);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 20);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Data Prevista de Fim:";
+            this.labelDataPrevistaFim.AutoSize = true;
+            this.labelDataPrevistaFim.Location = new System.Drawing.Point(18, 278);
+            this.labelDataPrevistaFim.Name = "labelDataPrevistaFim";
+            this.labelDataPrevistaFim.Size = new System.Drawing.Size(160, 20);
+            this.labelDataPrevistaFim.TabIndex = 17;
+            this.labelDataPrevistaFim.Text = "Data Prevista de Fim:";
             // 
             // dtFim
             // 
-            this.dtFim.Location = new System.Drawing.Point(132, 274);
+            this.dtFim.Location = new System.Drawing.Point(195, 276);
             this.dtFim.Name = "dtFim";
             this.dtFim.Size = new System.Drawing.Size(200, 26);
             this.dtFim.TabIndex = 16;
@@ -212,37 +213,37 @@
             // 
             // txtDataRealini
             // 
-            this.txtDataRealini.Location = new System.Drawing.Point(132, 42);
+            this.txtDataRealini.Location = new System.Drawing.Point(132, 38);
             this.txtDataRealini.Name = "txtDataRealini";
             this.txtDataRealini.ReadOnly = true;
             this.txtDataRealini.Size = new System.Drawing.Size(135, 26);
             this.txtDataRealini.TabIndex = 21;
             // 
-            // label9
+            // labelDataRealInicio
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(23, 45);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 20);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "Data Real de Início:";
+            this.labelDataRealInicio.AutoSize = true;
+            this.labelDataRealInicio.Location = new System.Drawing.Point(18, 45);
+            this.labelDataRealInicio.Name = "labelDataRealInicio";
+            this.labelDataRealInicio.Size = new System.Drawing.Size(148, 20);
+            this.labelDataRealInicio.TabIndex = 20;
+            this.labelDataRealInicio.Text = "Data Real de Início:";
             // 
             // txtdataRealFim
             // 
-            this.txtdataRealFim.Location = new System.Drawing.Point(132, 68);
+            this.txtdataRealFim.Location = new System.Drawing.Point(132, 71);
             this.txtdataRealFim.Name = "txtdataRealFim";
             this.txtdataRealFim.ReadOnly = true;
             this.txtdataRealFim.Size = new System.Drawing.Size(135, 26);
             this.txtdataRealFim.TabIndex = 23;
             // 
-            // label10
+            // labelDataRealFim
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(23, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(148, 20);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Data Real de Início:";
+            this.labelDataRealFim.AutoSize = true;
+            this.labelDataRealFim.Location = new System.Drawing.Point(23, 71);
+            this.labelDataRealFim.Name = "labelDataRealFim";
+            this.labelDataRealFim.Size = new System.Drawing.Size(137, 20);
+            this.labelDataRealFim.TabIndex = 22;
+            this.labelDataRealFim.Text = "Data Real de Fim:";
             // 
             // txtDataCriacao
             // 
@@ -330,9 +331,19 @@
             this.cbProjeto.Size = new System.Drawing.Size(121, 28);
             this.cbProjeto.TabIndex = 1;
             // 
+            // labelDataPrevistaInicio
+            // 
+            this.labelDataPrevistaInicio.AutoSize = true;
+            this.labelDataPrevistaInicio.Location = new System.Drawing.Point(18, 251);
+            this.labelDataPrevistaInicio.Name = "labelDataPrevistaInicio";
+            this.labelDataPrevistaInicio.Size = new System.Drawing.Size(171, 20);
+            this.labelDataPrevistaInicio.TabIndex = 32;
+            this.labelDataPrevistaInicio.Text = "Data Prevista de Inicio:";
+            // 
             // frmDetalhesTarefa
             // 
             this.ClientSize = new System.Drawing.Size(782, 436);
+            this.Controls.Add(this.labelDataPrevistaInicio);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -345,14 +356,14 @@
             this.Controls.Add(this.cbTipoTarefa);
             this.Controls.Add(this.dtInicio);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelDataPrevistaFim);
             this.Controls.Add(this.dtFim);
             this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtDataRealini);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.labelDataRealInicio);
             this.Controls.Add(this.txtdataRealFim);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.labelDataRealFim);
             this.Controls.Add(this.txtDataCriacao);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel1);
@@ -371,5 +382,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label labelDataPrevistaInicio;
     }
 }
