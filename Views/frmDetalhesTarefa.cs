@@ -20,12 +20,16 @@ namespace iTasks
         {
             InitializeComponent();
             this.gestorIdAtual = gestorId;
+
+            cbTipoTarefa.SelectedIndexChanged += cbTipoTarefa_SelectedIndexChanged;
+
         }
 
         private void frmDetalhesTarefa_Load(object sender, EventArgs e)
         {
             using (var context = new AppDbContext())
             {
+
                 cbTipoTarefa.DataSource = context.TiposTarefas.ToList();
                 cbTipoTarefa.DisplayMember = "NomeTarefa";
                 cbTipoTarefa.ValueMember = "Id";
@@ -122,6 +126,14 @@ namespace iTasks
         private void cbProgramador_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbTipoTarefa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTipoTarefa.SelectedItem is TipoTarefa tipoSelecionado)
+            {
+                txtId.Text = tipoSelecionado.Id.ToString();
+            }
         }
     }
 }

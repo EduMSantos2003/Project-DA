@@ -42,6 +42,7 @@ namespace iTasks
                     Sessao.GestorIdLogado = gestor.Id;
 
                     frmKanban secondForm = new frmKanban();
+                    secondForm.UserName = gestor.Username;
                     secondForm.Show();
                     this.Hide();
                     return;
@@ -56,6 +57,7 @@ namespace iTasks
                     MessageBox.Show("Login como Programador realizado com sucesso!");
 
                     frmKanban secondForm = new frmKanban();
+                    secondForm.UserName = programador.Username;
                     secondForm.Show();
                     this.Hide();
                     return;
@@ -63,6 +65,12 @@ namespace iTasks
 
                 // Se não encontrou nem Gestor nem Programador:
                 MessageBox.Show("Login ou senha inválidos!");
+
+                frmKanban frm = new frmKanban();
+                frm.UserName = gestor.Username;
+                frm.UserName = programador.Username;
+                frm.Show();
+                this.Hide(); // se quiseres esconder o formulário de login
             }
         }
      }

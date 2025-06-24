@@ -19,6 +19,9 @@ namespace iTasks
         public frmGereTiposTarefas()
         {
             InitializeComponent();
+
+            lstLista.SelectedIndexChanged += lstLista_SelectedIndexChanged; 
+
         }
 
         private void btGravar_Click(object sender, EventArgs e)
@@ -50,6 +53,21 @@ namespace iTasks
             txtDesc.Focus();
         }
 
+        private void lstLista_SelectedIndexChanged(object sender, EventArgs e)
+{
+            if (lstLista.SelectedIndex == -1)
+            {
+                // Nada selecionado
+                return;
+            }
+
+            // Obter o item selecionado e converter para TipoTarefa (ou o tipo correto)
+            TipoTarefa tipoSelecionado = (TipoTarefa)lstLista.SelectedItem;
+
+            // Preencher os campos do formulário
+            txtId.Text = tipoSelecionado.Id.ToString();
+            txtDesc.Text = tipoSelecionado.NomeTarefa;
+        }
 
     }
 }

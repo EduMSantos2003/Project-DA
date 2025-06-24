@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTasks.Data;
 using iTasks.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace iTasks
 {
@@ -17,6 +18,8 @@ namespace iTasks
     public partial class frmKanban : Form
     {
         public string UserName { get; set; }
+
+
         public frmKanban()
         {
             InitializeComponent();
@@ -84,7 +87,7 @@ namespace iTasks
         {
             label1.Text = "Bem-vindo, " + UserName;
         }
-
+        
         private void label1_Click(object sender, EventArgs e)
         {
 

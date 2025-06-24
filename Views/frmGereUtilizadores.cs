@@ -206,6 +206,7 @@ namespace iTasks
             Gestor gestorSelecionado = (Gestor)lstListaGestores.SelectedItem;
 
             // Preencher os campos do formulário com os dados do gestor
+            txtIdGestor.Text = gestorSelecionado.Id.ToString();
             txtNomeGestor.Text = gestorSelecionado.Name;
             txtUsernameGestor.Text = gestorSelecionado.Username;
             txtPasswordGestor.Text = gestorSelecionado.Password;
@@ -221,6 +222,8 @@ namespace iTasks
             cbGestorProg.DataSource = null;
             cbGestorProg.DataSource = AppContext.Gestores.ToList();
             cbGestorProg.DisplayMember = "Nome"; // para mostrar o nome
+
+
         }
 
         private void frmGereUtilizadores_Load(object sender, EventArgs e)
@@ -294,6 +297,7 @@ namespace iTasks
             Programador programadorSelecionado = (Programador)lstListaProgramadores.SelectedItem;
 
             // Preencher os campos do formulário com os dados do prog
+            txtIdProg.Text = programadorSelecionado.Id.ToString();
             txtNomeProg.Text = programadorSelecionado.Name;
             txtUsernameProg.Text = programadorSelecionado.Username;
             txtPasswordProg.Text = programadorSelecionado.Password;
