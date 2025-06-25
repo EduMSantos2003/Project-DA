@@ -62,6 +62,7 @@
             this.Controls.Add(this.gvTarefasEmCurso);
             this.Name = "frmConsultaTarefasEmCurso";
             this.Text = "frmConsultaTarefasEmCurso";
+            this.Load += new System.EventHandler(this.frmConsultaTarefasEmCurso_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasEmCurso)).EndInit();
             this.ResumeLayout(false);
 

@@ -66,5 +66,10 @@ namespace iTasks
         private void gvTarefasEmCurso_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+
+        private void frmConsultaTarefasEmCurso_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

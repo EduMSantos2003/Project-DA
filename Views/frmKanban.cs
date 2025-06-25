@@ -85,15 +85,31 @@ namespace iTasks
 
         private void gerirUtilizadoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmGereUtilizadores = new frmGereUtilizadores();
-            frmGereUtilizadores.ShowDialog();
+            if (Sessao.GestorIdLogado != null)
+            {
+                Form frmGereUtilizadores = new frmGereUtilizadores();
+                frmGereUtilizadores.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Apenas um Gestor pode aceder à gestão de utilizadores!", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmGereTiposTarefas = new frmGereTiposTarefas();
-            frmGereTiposTarefas.ShowDialog();
+            if (Sessao.GestorIdLogado != null)
+            {
+                Form frmGereTiposTarefas = new frmGereTiposTarefas();
+                frmGereTiposTarefas.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Apenas um Gestor pode aceder à gestão de tipos de tarefas!", "Acesso Negado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
