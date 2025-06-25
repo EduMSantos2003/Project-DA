@@ -38,10 +38,6 @@ namespace iTasks.Models
         public int GestorId { get; set; }
         public Gestor Gestor { get; set; }
 
-        // Foreign key para Projeto
-        public int ProjetoId { get; set; }
-        public Projeto Projeto { get; set; }
-
         public int StoryPoints { get; set; } // SP da tarefa
     }
 }

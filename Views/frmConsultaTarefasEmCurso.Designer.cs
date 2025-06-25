@@ -41,6 +41,7 @@
             this.gvTarefasEmCurso.RowHeadersWidth = 62;
             this.gvTarefasEmCurso.Size = new System.Drawing.Size(772, 308);
             this.gvTarefasEmCurso.TabIndex = 0;
+            this.gvTarefasEmCurso.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTarefasEmCurso_CellContentClick);
             // 
             // btFechar
             // 

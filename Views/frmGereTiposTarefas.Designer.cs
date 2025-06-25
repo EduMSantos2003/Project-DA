@@ -35,17 +35,16 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btGravar = new System.Windows.Forms.Button();
+            this.btFechar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lstLista);
-            this.groupBox1.Location = new System.Drawing.Point(18, 18);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(411, 592);
+            this.groupBox1.Size = new System.Drawing.Size(274, 385);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista de Tipos de Tarefas";
@@ -54,74 +53,77 @@
             // 
             this.lstLista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstLista.FormattingEnabled = true;
-            this.lstLista.ItemHeight = 20;
-            this.lstLista.Location = new System.Drawing.Point(4, 24);
-            this.lstLista.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lstLista.Location = new System.Drawing.Point(3, 16);
             this.lstLista.Name = "lstLista";
-            this.lstLista.Size = new System.Drawing.Size(403, 563);
+            this.lstLista.Size = new System.Drawing.Size(268, 366);
             this.lstLista.TabIndex = 0;
             this.lstLista.SelectedIndexChanged += new System.EventHandler(this.lstLista_SelectedIndexChanged);
             // 
             // txtDesc
             // 
-            this.txtDesc.Location = new System.Drawing.Point(538, 83);
-            this.txtDesc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtDesc.Location = new System.Drawing.Point(359, 54);
             this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(427, 26);
+            this.txtDesc.Size = new System.Drawing.Size(286, 20);
             this.txtDesc.TabIndex = 15;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(442, 88);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(295, 57);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 20);
+            this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 14;
             this.label4.Text = "Descrição:";
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(538, 43);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtId.Location = new System.Drawing.Point(359, 28);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(91, 26);
+            this.txtId.Size = new System.Drawing.Size(62, 20);
             this.txtId.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(501, 48);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(334, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Id:";
             // 
             // btGravar
             // 
-            this.btGravar.Location = new System.Drawing.Point(759, 146);
-            this.btGravar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btGravar.Location = new System.Drawing.Point(506, 95);
             this.btGravar.Name = "btGravar";
-            this.btGravar.Size = new System.Drawing.Size(208, 35);
+            this.btGravar.Size = new System.Drawing.Size(139, 23);
             this.btGravar.TabIndex = 31;
             this.btGravar.Text = "Gravar Dados";
             this.btGravar.UseVisualStyleBackColor = true;
             this.btGravar.Click += new System.EventHandler(this.btGravar_Click);
             // 
+            // btFechar
+            // 
+            this.btFechar.Location = new System.Drawing.Point(567, 135);
+            this.btFechar.Name = "btFechar";
+            this.btFechar.Size = new System.Drawing.Size(78, 23);
+            this.btFechar.TabIndex = 32;
+            this.btFechar.Text = "Fechar";
+            this.btFechar.UseVisualStyleBackColor = true;
+            this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
+            // 
             // frmGereTiposTarefas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 622);
+            this.ClientSize = new System.Drawing.Size(664, 404);
+            this.Controls.Add(this.btFechar);
             this.Controls.Add(this.btGravar);
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGereTiposTarefas";
             this.Text = "frmGereTiposTarefas";
             this.groupBox1.ResumeLayout(false);
@@ -139,5 +141,6 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btGravar;
+        private System.Windows.Forms.Button btFechar;
     }
 }

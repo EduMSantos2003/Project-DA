@@ -15,51 +15,79 @@ namespace iTasks
     public partial class frmDetalhesTarefa : Form
     {
         private int gestorIdAtual;
+        private Tarefa tarefaSelecionada;
+        private bool isReadOnly;
 
-        public Tarefa TarefaParaEditar { get; set; }
-
-
-
+        // Construtor para criar nova Tarefa (Gestor)
         public frmDetalhesTarefa(int gestorId)
         {
             InitializeComponent();
             this.gestorIdAtual = gestorId;
+            this.isReadOnly = false; // não é ReadOnly
+        }
 
-            cbTipoTarefa.SelectedIndexChanged += cbTipoTarefa_SelectedIndexChanged;
+        // Construtor para Ver Detalhes (Programador ou Gestor)
+        public frmDetalhesTarefa(Tarefa tarefa, bool modoReadOnly)
+        {
+            InitializeComponent();
 
-
+            this.tarefaSelecionada = tarefa;
+            this.isReadOnly = modoReadOnly;
         }
 
         private void frmDetalhesTarefa_Load(object sender, EventArgs e)
         {
             using (var context = new AppDbContext())
             {
-
                 cbTipoTarefa.DataSource = context.TiposTarefas.ToList();
                 cbTipoTarefa.DisplayMember = "NomeTarefa";
                 cbTipoTarefa.ValueMember = "Id";
 
-                cbProgramador.DataSource = context.Programadores.ToList();
+                cbProgramador.DataSource = context.Programadores
+                    .Where(p => p.GestorId == gestorIdAtual)
+                    .ToList();
                 cbProgramador.DisplayMember = "Name";
                 cbProgramador.ValueMember = "Id";
 
-                cbProjeto.DataSource = context.Projetos.ToList();
-                cbProjeto.DisplayMember = "Descricao";
-                cbProjeto.ValueMember = "Id";
-
-                if (TarefaParaEditar != null)
+                if (tarefaSelecionada != null)
                 {
-                    txtDesc.Text = TarefaParaEditar.Descricao;
-                    txtOrdem.Text = TarefaParaEditar.OrdemExecucao.ToString();
-                    txtStoryPoints.Text = TarefaParaEditar.StoryPoints.ToString();
+                    // Preencher os campos com os dados da Tarefa
+                    txtDesc.Text = tarefaSelecionada.Descricao;
+                    txtOrdem.Text = tarefaSelecionada.OrdemExecucao.ToString();
+                    txtStoryPoints.Text = tarefaSelecionada.StoryPoints.ToString();
 
-                    cbTipoTarefa.SelectedValue = TarefaParaEditar.TipoTarefaId;
-                    cbProgramador.SelectedValue = TarefaParaEditar.ProgramadorId;
-                    cbProjeto.SelectedValue = TarefaParaEditar.ProjetoId;
+                    cbTipoTarefa.SelectedValue = tarefaSelecionada.TipoTarefaId;
+                    cbProgramador.SelectedValue = tarefaSelecionada.ProgramadorId;
 
-                    dtInicio.Value = TarefaParaEditar.DataPrevistaInicio;
-                    dtFim.Value = TarefaParaEditar.DataPrevistaFim;
+                    dtInicio.Value = tarefaSelecionada.DataPrevistaInicio;
+                    dtFim.Value = tarefaSelecionada.DataPrevistaFim;
 
+                    txtEstado.Text = tarefaSelecionada.EstadoAtual.ToString();
+                    txtDataCriacao.Text = tarefaSelecionada.DataCriacao.ToString();
+                    txtDataRealini.Text = tarefaSelecionada.DataRealInicio?.ToString() ?? "";
+                    txtdataRealFim.Text = tarefaSelecionada.DataRealFim?.ToString() ?? "";
+
+                    // Se for modo ReadOnly — bloquear os campos
+                    if (isReadOnly)
+                    {
+                        txtDesc.ReadOnly = true;
+                        txtOrdem.ReadOnly = true;
+                        txtStoryPoints.ReadOnly = true;
+
+                        cbTipoTarefa.Enabled = false;
+                        cbProgramador.Enabled = false;
+
+                        dtInicio.Enabled = false;
+                        dtFim.Enabled = false;
+
+                        btGravar.Enabled = false; // não pode gravar!
+                    }
+                }
+                else
+                {
+                    // Nova Tarefa — valores default
+                    dtInicio.Value = DateTime.Today;
+                    dtFim.Value = DateTime.Today.AddDays(10);
                 }
             }
         }
@@ -69,12 +97,6 @@ namespace iTasks
             if (string.IsNullOrWhiteSpace(txtDesc.Text))
             {
                 MessageBox.Show("A descrição é obrigatória.");
-                return;
-            }
-
-            if (cbTipoTarefa.SelectedItem == null || cbProgramador.SelectedItem == null || cbProjeto.SelectedItem == null)
-            {
-                MessageBox.Show("Seleciona o Tipo de Tarefa, o Programador e o Projeto.");
                 return;
             }
 
@@ -117,7 +139,6 @@ namespace iTasks
 
                         TipoTarefaId = (int)cbTipoTarefa.SelectedValue,
                         ProgramadorId = programadorId,
-                        ProjetoId = (int)cbProjeto.SelectedValue,
 
                         StoryPoints = storyPoints,
                         OrdemExecucao = ordem,
@@ -143,9 +164,9 @@ namespace iTasks
         {
             this.Close();
         }
+
         private void cbProgramador_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void cbTipoTarefa_SelectedIndexChanged(object sender, EventArgs e)
@@ -154,20 +175,12 @@ namespace iTasks
             {
                 txtId.Text = tipoSelecionado.Id.ToString();
 
-               
-                    txtId.Text = tipoSelecionado.Id.ToString();
-
-                    // Só alterar datas se for uma nova tarefa
-                    if (TarefaParaEditar == null)
-                    {
-                        dtInicio.Value = DateTime.Today;
-                        dtFim.Value = DateTime.Today.AddDays(10);
-                    }
-                
+                if (tarefaSelecionada == null)
+                {
+                    dtInicio.Value = DateTime.Today;
+                    dtFim.Value = DateTime.Today.AddDays(10);
+                }
             }
-
         }
-
-
     }
 }

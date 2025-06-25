@@ -39,10 +39,10 @@ namespace iTasks.Data
                 .HasForeignKey(t => t.TipoTarefaId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Tarefa>()
-                .HasRequired(t => t.Projeto)
+            modelBuilder.Entity<Programador>()
+                .HasRequired(p => p.Gestor)
                 .WithMany()
-                .HasForeignKey(t => t.ProjetoId)
+                .HasForeignKey(p => p.GestorId)
                 .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);

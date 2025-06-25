@@ -22,8 +22,6 @@ namespace iTasks
         public frmLogin()
         {
             InitializeComponent();
-
-            //teste
         }
 
         private void btLogin_Click(object sender, EventArgs e)
@@ -33,14 +31,17 @@ namespace iTasks
 
             using (var context = new AppDbContext())
             {
+                // Tentar login como Gestor
                 var gestor = context.Gestores
                     .FirstOrDefault(g => g.Username == name && g.Password == password);
 
                 if (gestor != null)
                 {
-                    // Login de Gestor OK
+                    // Guardar quem fez login
                     Sessao.GestorIdLogado = gestor.Id;
+                    Sessao.ProgramadorIdLogado = null; // garantir que não fica valor antigo
 
+                    // Abrir Kanban
                     frmKanban secondForm = new frmKanban();
                     secondForm.UserName = gestor.Username;
                     secondForm.Show();
@@ -54,8 +55,13 @@ namespace iTasks
 
                 if (programador != null)
                 {
+                    // Guardar quem fez login
+                    Sessao.ProgramadorIdLogado = programador.Id;
+                    Sessao.GestorIdLogado = null; // garantir que não fica valor antigo
+
                     MessageBox.Show("Login como Programador realizado com sucesso!");
 
+                    // Abrir Kanban
                     frmKanban secondForm = new frmKanban();
                     secondForm.UserName = programador.Username;
                     secondForm.Show();
@@ -65,13 +71,8 @@ namespace iTasks
 
                 // Se não encontrou nem Gestor nem Programador:
                 MessageBox.Show("Login ou senha inválidos!");
-
-                frmKanban frm = new frmKanban();
-                frm.UserName = gestor.Username;
-                frm.UserName = programador.Username;
-                frm.Show();
-                this.Hide(); // se quiseres esconder o formulário de login
             }
         }
-     }
- }
+
+    }
+}

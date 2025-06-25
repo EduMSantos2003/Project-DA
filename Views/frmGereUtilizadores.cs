@@ -46,15 +46,14 @@ namespace iTasks
         }
 
         private void btGravarGestor_Click(object sender, EventArgs e)
-        {   
+        {
             using (var DbContext = new AppDbContext())
             {
-                String name = txtNomeGestor.Text;
-                String username = txtUsernameGestor.Text;
-                String password = txtPasswordGestor.Text;     // declarar gestor
+                string name = txtNomeGestor.Text;
+                string username = txtUsernameGestor.Text;
+                string password = txtPasswordGestor.Text;
 
-
-                Departamento Departamento = (Departamento)cbDepartamento.SelectedItem;
+                Departamento departamento = (Departamento)cbDepartamento.SelectedItem;
                 bool gereUtilizadores = chkGereUtilizadores.Checked;
 
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
@@ -63,19 +62,24 @@ namespace iTasks
                     return;
                 }
 
-                Gestor gestor = new Gestor (name, username, password, Departamento, gereUtilizadores);
-                DbContext.Gestores.Add(gestor);
+                // Verificar se o username já existe
+                bool usernameExiste = DbContext.Gestores.Any(g => g.Username == username)
+                                    || DbContext.Programadores.Any(p => p.Username == username);
 
+                if (usernameExiste)
+                {
+                    MessageBox.Show("Este Username já existe! Escolha outro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Gestor gestor = new Gestor(name, username, password, departamento, gereUtilizadores);
+                DbContext.Gestores.Add(gestor);
                 DbContext.SaveChanges();
 
                 lstListaGestores.DataSource = null;
                 lstListaGestores.DataSource = DbContext.Gestores.ToList();
 
-                //txtNomeGestor.Clear();
-                //txtUsernameGestor.Clear();
-                //txtPasswordGestor.Clear();
-
-                
+                MessageBox.Show("Gestor criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -95,11 +99,6 @@ namespace iTasks
 
                 if (gestor != null)
                 {
-                    /*String name = txtNomeGestor.Text;
-                    String Username = txtUsernameGestor.Text;
-                    String Password = txtPasswordGestor.Text;
-                    gestor.Departamento = (Departamento)cbDepartamento.SelectedItem;
-                    gestor.GereUtilizadores = chkGereUtilizadores.Checked;*/
 
                     gestor.Name = txtNomeGestor.Text;
                     gestor.Username = txtUsernameGestor.Text;
@@ -111,19 +110,12 @@ namespace iTasks
 
                     lstListaGestores.DataSource = null;
                     lstListaGestores.DataSource = DbContext.Gestores.ToList();
-                    //AtualizarLista();
-                    //LimparCampos();
 
                     MessageBox.Show("Gestor editado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        //String name = txtNomeGestor.Text;
-        //gestor.Username = txtUsernameGestor.Text;
-        //gestor.Password = txtPasswordGestor.Text;
-        //gestor.Departamento = (Departamento) cbDepartamento.SelectedItem;
-        //gestor.GereUtilizadores = chkGereUtilizadores.Checked;
 
         private void btApagarGestor_Click(object sender, EventArgs e)
         {
@@ -148,8 +140,6 @@ namespace iTasks
 
                         lstListaGestores.DataSource = null;
                         lstListaGestores.DataSource = DbContext.Gestores.ToList();
-                        //AtualizarLista();
-                        //LimparCampos();
 
                         MessageBox.Show("Gestor removido com sucesso.", "Removido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -174,15 +164,26 @@ namespace iTasks
                     return;
                 }
 
-                Programador programador = new Programador(name, username, password, selectedItem);
+                // Verificar se o username já existe
+                bool usernameExiste = DbContext.Gestores.Any(g => g.Username == username)
+                                    || DbContext.Programadores.Any(p => p.Username == username);
+
+                if (usernameExiste)
+                {
+                    MessageBox.Show("Este Username já existe! Escolha outro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                Gestor gestorSelecionado = (Gestor)cbGestorProg.SelectedItem;
+
+                Programador programador = new Programador(name, username, password, selectedItem, gestorSelecionado.Id);
                 DbContext.Programadores.Add(programador);
-              
                 DbContext.SaveChanges();
 
                 lstListaProgramadores.DataSource = null;
                 lstListaProgramadores.DataSource = DbContext.Programadores.ToList();
 
-                // Limpar os campos (opcional)
+                // Limpar os campos
                 txtNomeProg.Clear();
                 txtUsernameProg.Clear();
                 txtPasswordProg.Clear();
@@ -214,10 +215,6 @@ namespace iTasks
             cbDepartamento.SelectedItem = gestorSelecionado.Departamento;
             chkGereUtilizadores.Checked = gestorSelecionado.GereUtilizadores;
 
-
-
-
-
         }
 
         public void upDate_load()
@@ -231,8 +228,45 @@ namespace iTasks
 
         private void frmGereUtilizadores_Load(object sender, EventArgs e)
         {
-            upDate_load();
+            // Carregar Gestores
+            lstListaGestores.DataSource = AppContext.Gestores.ToList();
+            lstListaGestores.ClearSelected();
+
+            // Carregar Programadores
+            lstListaProgramadores.DataSource = AppContext.Programadores.ToList();
+            lstListaProgramadores.ClearSelected();
+
+            // Carregar Gestores na ComboBox (para associar Programador)
+            cbGestorProg.DataSource = AppContext.Gestores.ToList();
+            cbGestorProg.DisplayMember = "Username";
+            cbGestorProg.ValueMember = "Id";
+
+            // Limpar os campos (opcional — se quiseres garantir tudo vazio ao abrir)
+            LimparCamposGestor();
+            LimparCamposProgramador();
         }
+
+        private void LimparCamposGestor()
+        {
+            txtIdGestor.Text = "";
+            txtNomeGestor.Text = "";
+            txtUsernameGestor.Text = "";
+            txtPasswordGestor.Text = "";
+            cbDepartamento.SelectedIndex = 0;
+            chkGereUtilizadores.Checked = false;
+        }
+
+        private void LimparCamposProgramador()
+        {
+            txtIdProg.Text = "";
+            txtNomeProg.Text = "";
+            txtUsernameProg.Text = "";
+            txtPasswordProg.Text = "";
+            cbNivelProg.SelectedIndex = 0;
+            if (cbGestorProg.Items.Count > 0)
+                cbGestorProg.SelectedIndex = 0;
+        }
+
 
 
         private void cbGestorProg_SelectedIndexChanged(object sender, EventArgs e)
@@ -337,7 +371,10 @@ namespace iTasks
             }
         }
 
-       
+        private void btFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

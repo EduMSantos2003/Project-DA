@@ -8,7 +8,9 @@ namespace iTasks
 {
     public static class Sessao
     {
-        public static int GestorIdLogado { get; set; }
+        public static int? GestorIdLogado { get; set; }
+        public static int? ProgramadorIdLogado { get; set; }
+
     }
 }
 

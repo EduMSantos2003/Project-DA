@@ -13,17 +13,20 @@ namespace iTasks.Models
     {
         public NivelExperiencia NivelExperiencia { get; set; } // Enum: Junior / Senior
 
+        public int GestorId { get; set; } // FK para o Gestor
+        public Gestor Gestor { get; set; } // Navegação para o Gestor
 
         // Construtor sem argumentos (obrigatório para EF)
         public Programador() { }
 
         // Construtor com argumentos — para usares nos formulários
-        public Programador(string name, string username, string password, NivelExperiencia nivelExperiencia)
+        public Programador(string name, string username, string password, NivelExperiencia nivelExperiencia, int gestorId)
         {
             Name = name;
             Username = username;
             Password = password;
             NivelExperiencia = nivelExperiencia;
+            GestorId = gestorId;
         }
     }
 }

@@ -136,6 +136,14 @@
     <Compile Include="Migrations\202506241413181_AddTabelasFaltantes.Designer.cs">
       <DependentUpon>202506241413181_AddTabelasFaltantes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202506251300234_RemoverProjeto.cs" />
+    <Compile Include="Migrations\202506251300234_RemoverProjeto.Designer.cs">
+      <DependentUpon>202506251300234_RemoverProjeto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202506251318508_AddProgramadorGestorId.cs" />
+    <Compile Include="Migrations\202506251318508_AddProgramadorGestorId.Designer.cs">
+      <DependentUpon>202506251318508_AddProgramadorGestorId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\EstadoTarefa.cs" />
@@ -200,6 +208,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202506241413181_AddTabelasFaltantes.resx">
       <DependentUpon>202506241413181_AddTabelasFaltantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506251300234_RemoverProjeto.resx">
+      <DependentUpon>202506251300234_RemoverProjeto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506251318508_AddProgramadorGestorId.resx">
+      <DependentUpon>202506251318508_AddProgramadorGestorId.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmConsultarTarefasConcluidas.resx">
       <DependentUpon>frmConsultarTarefasConcluidas.cs</DependentUpon>
