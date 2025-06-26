@@ -50,9 +50,12 @@ namespace iTasks.Data
         }
 
         /*
+        Install-Package EntityFramework
+
         Enable-Migrations
         Add-Migration InitialCreate
         Update-Database
+
         */
     }
 }
