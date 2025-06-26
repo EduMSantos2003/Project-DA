@@ -17,7 +17,6 @@ namespace iTasks.Data
         public DbSet<Gestor> Gestores { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }
         public DbSet<TipoTarefa> TiposTarefas { get; set; }
-        public DbSet<Projeto> Projetos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

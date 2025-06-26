@@ -148,6 +148,10 @@
     <Compile Include="Migrations\202506252109585_InitialCreate1.Designer.cs">
       <DependentUpon>202506252109585_InitialCreate1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202506261230203_AtualizarModelo.cs" />
+    <Compile Include="Migrations\202506261230203_AtualizarModelo.Designer.cs">
+      <DependentUpon>202506261230203_AtualizarModelo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\EstadoTarefa.cs" />
@@ -221,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202506252109585_InitialCreate1.resx">
       <DependentUpon>202506252109585_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202506261230203_AtualizarModelo.resx">
+      <DependentUpon>202506261230203_AtualizarModelo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmConsultarTarefasConcluidas.resx">
       <DependentUpon>frmConsultarTarefasConcluidas.cs</DependentUpon>
