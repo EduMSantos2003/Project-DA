@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.Entity; // Ensure you have the Entity Framework package installed
 using iTasks.Models; // Adjust the namespace according to your project structure
 
+//Install-Package EntityFramework
+
 namespace iTasks.Data
 {
     public class AppDbContext : DbContext
@@ -46,6 +48,12 @@ namespace iTasks.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        /*
+        Enable-Migrations
+        Add-Migration InitialCreate
+        Update-Database
+        */
     }
 }
 
